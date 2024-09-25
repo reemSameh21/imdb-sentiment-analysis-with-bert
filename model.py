@@ -56,9 +56,9 @@ def train_model():
     # Train the model
     trainer.train()
 
-    # Save the model to Hugging Face Hub (optional for Streamlit Cloud deployment)
-    # model.push_to_hub("your-hf-username/imdb-sentiment-model")
-    # tokenizer.push_to_hub("your-hf-username/imdb-sentiment-model")
+    # Save the model
+    model.save_pretrained("./model")
+    tokenizer.save_pretrained("./model")
 
     return trainer.evaluate()
 
