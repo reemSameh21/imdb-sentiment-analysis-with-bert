@@ -4,3 +4,4 @@ torch
 streamlit
 pytest
 scikit-learn
+transformers[torch]
