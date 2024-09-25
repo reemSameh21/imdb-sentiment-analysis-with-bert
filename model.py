@@ -73,8 +73,8 @@ def train_model():
     print("Saving the model...")
 
     # Save the model
-    model.save_pretrained("./model")
-    tokenizer.save_pretrained("./model")
+    model.save_pretrained("./model-test")
+    tokenizer.save_pretrained("./model-test")
 
     return trainer.evaluate()
 
