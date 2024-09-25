@@ -38,9 +38,11 @@ def train_model():
         evaluation_strategy="epoch",
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        num_train_epochs=1,  # Adjust as needed
+        num_train_epochs=3,  # Adjust as needed
         logging_dir="./logs",
         logging_steps=10,
+        evaluation_strategy="steps",
+        learning_rate=1e-5,   
     )
 
     # Trainer setup
