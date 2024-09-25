@@ -57,6 +57,6 @@ def train_model():
 
     return trainer.evaluate()
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     accuracy = train_model()
     print(f"Model accuracy: {accuracy['eval_accuracy']}")
