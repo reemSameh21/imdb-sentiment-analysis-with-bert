@@ -35,12 +35,12 @@ def train_model():
 
     # Training settings
     training_args = TrainingArguments(
-        output_dir="results",
+        output_dir="./results",
         evaluation_strategy="epoch",
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
         num_train_epochs=4, 
-        logging_dir="logs",
+        logging_dir="./logs",
         logging_steps=10,
     )
 
@@ -57,8 +57,8 @@ def train_model():
     trainer.train()
 
     # Save the model
-    model.save_pretrained("model")
-    tokenizer.save_pretrained("model")
+    model.save_pretrained("./model")
+    tokenizer.save_pretrained("./model")
 
     return trainer.evaluate()
 
