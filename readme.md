@@ -37,13 +37,13 @@ This project implements a complete sentiment analysis solution using the BERT (b
 1. Create requirements.txt<br><br>
    **Add the required libraries for the project:**<br>
    ``` bash
-   <br>transformers
-   <br>datasets
-   <br>torch
-   <br>streamlit
-   <br>pytest
-   <br>scikit-learn
-   <br>transformers[torch]
+   transformers
+   datasets
+   torch
+   streamlit
+   pytest
+   scikit-learn
+   transformers[torch]
 
 2. Create model.py<br><br>
 This script will train the BERT model for sentiment analysis using the IMDB dataset. Below is the code for model.py:
