@@ -37,9 +37,3 @@ jobs:
 
     - name: Run tests
       run: pytest test_model.py
-
-    - name: Upload Model as Artifact
-      uses: actions/upload-artifact@v3 
-      with:
-        name: model
-        path: ./model
