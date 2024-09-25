@@ -1,3 +1,4 @@
+import streamlit as st
 from datasets import load_dataset
 from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
 import torch
@@ -55,12 +56,16 @@ def train_model():
     # Train the model
     trainer.train()
 
-    # Save the model and tokenizer
-    model.save_pretrained("./model")
-    tokenizer.save_pretrained("./model")
+    # Save the model to Hugging Face Hub (optional for Streamlit Cloud deployment)
+    # model.push_to_hub("your-hf-username/imdb-sentiment-model")
+    # tokenizer.push_to_hub("your-hf-username/imdb-sentiment-model")
 
     return trainer.evaluate()
 
 if __name__ == "__main__":
-    accuracy = train_model()
-    print(f"Model accuracy: {accuracy['eval_accuracy']}")
+    st.title("IMDB Sentiment Analysis with BERT")
+
+    # Trigger training
+    if st.button("Train BERT Model"):
+        accuracy = train_model()
+        st.write(f"Model accuracy: {accuracy['eval_accuracy']}")
