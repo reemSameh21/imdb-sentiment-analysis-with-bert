@@ -13,7 +13,7 @@ def compute_metrics(pred):
 
 def train_model():
     # Load IMDB dataset
-    dataset = load_dataset('imdb')
+    dataset = load_dataset('imdb').shuffle(seed=42).select(range(100))
 
     # Load BERT tokenizer
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
