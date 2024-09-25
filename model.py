@@ -13,19 +13,23 @@ def compute_metrics(pred):
 
 def train_model():
     # Load IMDB dataset
-    dataset = load_dataset('imdb').shuffle(seed=42).select(range(100))
+    dataset = load_dataset('imdb')
+
+    # Select a portion of the data (e.g., 100 samples)
+    train_dataset = dataset['train'].shuffle(seed=42).select(range(100))
+    test_dataset = dataset['test'].shuffle(seed=42).select(range(100))
 
     # Load BERT tokenizer
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
-    # Process data to fit BERT
+    # Tokenize the data to fit BERT input format
     def tokenize_function(example):
         return tokenizer(example['text'], padding="max_length", truncation=True, max_length=512)
 
-    tokenized_train = dataset['train'].map(tokenize_function, batched=True)
-    tokenized_test = dataset['test'].map(tokenize_function, batched=True)
+    tokenized_train = train_dataset.map(tokenize_function, batched=True)
+    tokenized_test = test_dataset.map(tokenize_function, batched=True)
 
-    # Load BERT model for classification
+    # Load BERT model for sequence classification
     model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 
     # Training settings
@@ -34,13 +38,12 @@ def train_model():
         evaluation_strategy="epoch",
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        num_train_epochs=1,
+        num_train_epochs=1,  # Adjust as needed
         logging_dir="./logs",
         logging_steps=10,
-        fp16=True,
     )
 
-    # Set up the trainer
+    # Trainer setup
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -58,6 +61,6 @@ def train_model():
 
     return trainer.evaluate()
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     accuracy = train_model()
     print(f"Model accuracy: {accuracy['eval_accuracy']}")
