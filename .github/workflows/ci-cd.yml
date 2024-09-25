@@ -23,8 +23,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Verify dependencies
+      run: pip list
+
     - name: Train model
       run: python model.py
+
+    - name: Upload Model as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: model
+        path: ./model
 
     - name: Run tests
       run: pytest test_model.py
