@@ -76,6 +76,8 @@ def train_model():
     model.save_pretrained("./model-test")
     tokenizer.save_pretrained("./model-test")
 
+    print("The Model Saved Successfully")
+
     return trainer.evaluate()
 
 if __name__ == "__main__":
