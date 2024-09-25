@@ -4,6 +4,7 @@ from transformers import BertTokenizer, BertForSequenceClassification, Trainer, 
 import torch
 import numpy as np
 from sklearn.metrics import accuracy_score
+import os
 
 # Function to compute model accuracy
 def compute_metrics(pred):
@@ -71,6 +72,9 @@ def train_model():
 
     # Save the model and tokenizer
     print("Saving the model...")
+
+    save_directory = './model-test'
+    os.makedirs(save_directory, exist_ok=True)
 
     # Save the model
     model.save_pretrained("./model-test")
