@@ -3,8 +3,8 @@ from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 
 # Load model and tokenizer
-model = BertForSequenceClassification.from_pretrained('./model')
-tokenizer = BertTokenizer.from_pretrained('./model')
+model = BertForSequenceClassification.from_pretrained('./model-test')
+tokenizer = BertTokenizer.from_pretrained('./model-test')
 
 st.title("IMDB Sentiment Analysis with BERT")
 
