@@ -1,3 +1,4 @@
+import streamlit as st
 from datasets import load_dataset
 from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
 import torch
@@ -18,6 +19,7 @@ def train_model():
     dataset = load_dataset('imdb')
 
     print("Dataset loaded.")
+
     # Select a portion of the data (e.g., 100 samples)
     train_dataset = dataset['train'].shuffle(seed=42).select(range(100))
     test_dataset = dataset['test'].shuffle(seed=42).select(range(100))
@@ -29,6 +31,7 @@ def train_model():
     # Tokenize the data to fit BERT input format
     print("Tokenizing the dataset...")
 
+
     def tokenize_function(example):
         return tokenizer(example['text'], padding="max_length", truncation=True, max_length=512)
 
@@ -37,6 +40,7 @@ def train_model():
 
     # Load BERT model for sequence classification
     print("Loading BERT model...")
+
     model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 
     # Training settings
@@ -52,6 +56,7 @@ def train_model():
 
     # Trainer setup
     print("Setting up the trainer...")
+
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -66,11 +71,12 @@ def train_model():
 
     # Save the model and tokenizer
     print("Saving the model...")
+
+    # Save the model
     model.save_pretrained("./model")
     tokenizer.save_pretrained("./model")
 
     return trainer.evaluate()
-
 
 if __name__ == "__main__":
     accuracy = train_model()

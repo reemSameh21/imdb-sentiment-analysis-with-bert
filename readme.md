@@ -65,6 +65,10 @@ This script will train the BERT model for sentiment analysis using the IMDB data
        # Load the IMDB dataset
        dataset = load_dataset('imdb')
 
+       # Select a portion of the data (e.g., 100 samples)
+       train_dataset = dataset['train'].shuffle(seed=42).select(range(100))
+       test_dataset = dataset['test'].shuffle(seed=42).select(range(100))
+
        # Load the BERT tokenizer
        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
@@ -84,7 +88,7 @@ This script will train the BERT model for sentiment analysis using the IMDB data
            evaluation_strategy="epoch",
            per_device_train_batch_size=8,
            per_device_eval_batch_size=8,
-           num_train_epochs=3,  # Adjust as necessary
+           num_train_epochs=3,
            logging_dir="./logs",
            logging_steps=10,
        )
@@ -147,7 +151,7 @@ This file is for testing the model accuracy post-training:<br>
 
    def test_model_accuracy():
        accuracy = train_model()
-       assert accuracy['eval_accuracy'] > 0.7, "Model accuracy is too low!"
+       assert accuracy['eval_accuracy'] > 0.6, "Model accuracy is too low!"
    
 ## GitHub Actions Setup
 
@@ -183,6 +187,12 @@ This file is for testing the model accuracy post-training:<br>
 
       - name: Train model
         run: python model.py
+
+      - name: Upload Model as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: model
+          path: ./model
 
       - name: Run tests
         run: pytest test_model.py
