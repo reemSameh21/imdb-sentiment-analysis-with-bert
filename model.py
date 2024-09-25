@@ -41,7 +41,7 @@ def train_model():
         num_train_epochs=3, 
         logging_dir="./logs",
         logging_steps=10,
-        learning_rate=1e-5,   
+        learning_rate=1e-5,
     )
 
     # Trainer setup
