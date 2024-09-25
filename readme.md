@@ -65,6 +65,10 @@ This script will train the BERT model for sentiment analysis using the IMDB data
        # Load the IMDB dataset
        dataset = load_dataset('imdb')
 
+       # Select a portion of the data (e.g., 100 samples)
+       train_dataset = dataset['train'].shuffle(seed=42).select(range(100))
+       test_dataset = dataset['test'].shuffle(seed=42).select(range(100))
+
        # Load the BERT tokenizer
        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
