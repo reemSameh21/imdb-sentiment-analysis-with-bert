@@ -34,5 +34,11 @@ jobs:
     - name: Debug directory
       run: ls -R
 
+    - name: Upload Model
+      uses: actions/upload-artifact@v3
+      with:
+        name: model-artifact
+        path: model-test/
+
     - name: Run tests
       run: pytest test_model.py
