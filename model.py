@@ -13,7 +13,6 @@ def compute_metrics(pred):
     acc = accuracy_score(labels, preds)
     return {"accuracy": acc}
 
-
 def train_model():
     # Load IMDB dataset
     print("Loading IMDB dataset...")
@@ -31,8 +30,6 @@ def train_model():
 
     # Tokenize the data to fit BERT input format
     print("Tokenizing the dataset...")
-
-
     def tokenize_function(example):
         return tokenizer(example['text'], padding="max_length", truncation=True, max_length=512)
 
@@ -41,7 +38,6 @@ def train_model():
 
     # Load BERT model for sequence classification
     print("Loading BERT model...")
-
     model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 
     # Training settings
@@ -57,7 +53,6 @@ def train_model():
 
     # Trainer setup
     print("Setting up the trainer...")
-
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -73,14 +68,13 @@ def train_model():
     # Save the model and tokenizer
     print("Saving the model...")
 
-    save_directory = './model-test'
+    save_directory = os.path.join(os.getcwd(), 'model-test')
     os.makedirs(save_directory, exist_ok=True)
 
-    # Save the model
-    model.save_pretrained("./model-test")
-    tokenizer.save_pretrained("./model-test")
+    model.save_pretrained(save_directory)
+    tokenizer.save_pretrained(save_directory)
 
-    print("The Model Saved Successfully")
+    print(f"Model saved at: {save_directory}")
 
     return trainer.evaluate()
 
