@@ -73,9 +73,7 @@ def train_model():
 
     model.save_pretrained(save_directory)
     tokenizer.save_pretrained(save_directory)
-
-    print(f"Model saved at: {save_directory}")
-
+    
     return trainer.evaluate()
 
 if __name__ == "__main__":
