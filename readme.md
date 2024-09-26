@@ -19,7 +19,7 @@ This project implements a complete sentiment analysis solution using the BERT (b
 3. Open the setting on your repository, choose 'Action' from the left panel menu then scroll down for 'Workflow permissions' to make sure that 'Read and write permissions' is choosen and check this option 'Allow GitHub Actions to create and approve pull requests' then click save. 
 4. After creating the repository, clone it to your local machine:
    ```bash
-   git clone https://github.com/reemSameh21/imdb-sentiment-analysis-with-bert/
+   git clone https://github.com/<your-username>/<your-repo-name>/
 
 ## Local Project Structure
 
