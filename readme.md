@@ -6,9 +6,10 @@ This project implements a complete sentiment analysis solution using the BERT (b
 1. [Project Setup](#project-setup)
 2. [Local Project Structure](#local-project-structure)
 3. [Python Libraries and Model Setup](#python-libraries-and-model-setup)
-4. [GitHub Actions Setup](#github-actions-setup)
-5. [Deploying with Streamlit Cloud](#deploying-with-streamlit-cloud)
-6. [Final Result](#final-result)
+4. [Handel Git Large File Storage (LFS)](#handel-git-large-file-storage-lfs)
+5. [GitHub Actions Setup](#github-actions-setup)
+6. [Deploying with Streamlit Cloud](#deploying-with-streamlit-cloud)
+7. [Final Result](#final-result)
 
 ## Project Setup
 
