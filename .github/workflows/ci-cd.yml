@@ -23,8 +23,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Check permissions for model directory
+      run: |
+        mkdir -p model
+        ls -ld model
+
     - name: Train model
       run: python model.py
+
+    - name: Debug directory
+      run: ls -R
 
     - name: Run tests
       run: pytest test_model.py
